@@ -1,11 +1,11 @@
 <template>
   <div class="form-container">
-    <!-- <span v-if="errmsg" class="submit submit--error">Fail to sign up</span> -->
-    <div v-if="errmsg" class="submit submit--success">Success</div>
+    <!-- <span class="submit submit--error">Fail to sign up</span> -->
+    <!-- <div class="submit submit--success">Success</div> -->
     <form class="form" @submit.prevent="onSubmit">
-      <h4>Dashboard</h4>
-      <h5>Sign up to your account</h5>
-      <div class="form-group">
+      <h4 class="font-semibold mt-10 text-lg">Dashboard</h4>
+      <h5 class="text-sm mb-10 tracking-wide">Sign up to your account</h5>
+      <div class="h-80">
         <div class="form-row" title="user name">
           <label for="">
             <input
@@ -28,13 +28,13 @@
             class="errormsg"
             v-if="v$.email.required.$invalid && v$.email.$dirty"
           >
-            {{ v$.email.required.$message }}
+            Đây là thông tin bắt buộc
           </span>
           <span
             class="errormsg"
             v-if="v$.email.email.$invalid && v$.email.$dirty"
           >
-            {{ v$.email.email.$message }}
+            Địa chỉ email không hợp lệ
           </span>
         </div>
         <div class="form-row" title="password">
@@ -50,7 +50,7 @@
             class="errormsg"
             v-if="v$.password.required.$invalid && v$.password.$dirty"
           >
-            Đây là trường bắt buộc
+            Đây là thông tin bắt buộc
           </span>
           <span
             class="errormsg"
@@ -85,7 +85,7 @@
               v$.confirmPassword.sameAs.$invalid && v$.confirmPassword.$dirty
             "
           >
-            {{ v$.confirmPassword.sameAs.$message }}
+            Mật khẩu không trùng khớp
           </span>
         </div>
       </div>
@@ -161,40 +161,27 @@ export default {
 
 <style scoped>
 .form-container {
-  margin-top: 40px;
-  position: absolute;
-  left: 50%;
-  text-align: center;
+  @apply mt-10 left-2/4 text-center absolute text-black;
   transform: translateX(-50%);
   background-color: rgb(55, 111, 216);
   border-radius: 9px;
-  border-top: 10px solid #79a6fe;
+  border-top: 10px solid #df1eaf;
   border-bottom: 10px solid #8bd17c;
   width: 500px;
   height: 540px;
   box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
-  color: black;
 }
 
 .form h4 {
   color: #14d1d1;
-  font-size: 18px;
-  margin-top: 40px;
-  font-weight: 600;
 }
 
 .form h5 {
-  font-size: 13px;
   color: #89dbe6;
-  letter-spacing: 1.5px;
-  margin-bottom: 40px;
 }
 
 .submit {
-  min-width: 200px;
-  padding: 2px;
-  border: 0;
-  margin: 0 auto 10px;
+  @apply flex justify-center;
   color: white;
 }
 
@@ -206,24 +193,14 @@ export default {
   background: #31e466;
 }
 
-.form-group {
-  height: 300px;
-}
-
 .form-row {
-  display: flex;
-  flex-direction: column;
-  margin: 12px 0;
-  height: 20%;
+  @apply flex flex-col my-3 h-1/5;
 }
 
 .form-row input {
-  background: #e3e6f1;
-  border: 0;
-  border-radius: 5px;
-  padding: 14px 10px;
+  @apply py-3.5 px-2.5 rounded outline-none;
+  background-color: #e3e6f1;
   width: 320px;
-  outline: none;
   color: #2b1e1e;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
@@ -240,29 +217,13 @@ export default {
 }
 
 .form-row .errormsg {
-  color: red;
-  font-size: 14px;
-  /* background-color: rgba(0,0,0,0.2); */
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex justify-center items-center text-sm font-semibold;
+  color: #ff9766;
 }
 
 .btn {
-  border: 0;
+  @apply rounded-full text-base cursor-pointer font-medium w-80 h-12 transition ease-in-out delay-100 hover:bg-indigo-500 duration-300;
   background: #471ad8;
   color: #dad7f7;
-  border-radius: 100px;
-  width: 340px;
-  height: 49px;
-  font-size: 16px;
-  transition: 0.3s;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.btn:hover {
-  background: #5d33e6;
 }
 </style>
