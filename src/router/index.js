@@ -1,20 +1,29 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import DashBoard from "../views/DashBoard.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "DashBoard",
+    component: DashBoard,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/todolist",
+    name: "Todolist",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "Todolist" */ "../views/Todolist.vue"),
+    children: [
+      {
+        path: ":id",
+        name: "Task",
+        component: () =>
+          import(/* webpackChunkName: "task" */ "../views/Task.vue"),
+      },
+    ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/",
   },
 ];
 
