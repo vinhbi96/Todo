@@ -56,7 +56,7 @@
             class="errormsg"
             v-if="
               v$.password.maxLength.$invalid ||
-              (v$.password.minLength.$invalid && v$.password.$dirty)
+              v$.password.minLength.$invalid && v$.password.$dirty
             "
           >
             Vui lòng nhập mật khẩu từ 6 đến 16 kí tự
